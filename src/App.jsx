@@ -1,7 +1,7 @@
 import React from 'react';
 import { ThemeProvider } from '@mui/material/styles';
 import { RouterProvider } from 'react-router';
-import router from './Routers/router';
+import router from './Routers/router_R';
 import { theme } from './theme_params';
 
 export default function App() {
