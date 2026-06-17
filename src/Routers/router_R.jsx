@@ -2,12 +2,15 @@ import React from "react";
 import { createBrowserRouter } from "react-router";
 import AppLayout from "../LayOut/AppLayOut.jsx";
 
-// ייבוא הדפים האמיתיים של שעון הנוכחות
+// ייבוא הדפים האמיתיים של האפליקציה
 import EntrancePage from "../_Features/Attendance/EntrancePage.jsx";
 import ExitPage from "../_Features/Attendance/ExitPage.jsx";
+import AttendanceReports from "../_Features/Reports/AttendanceReports.jsx";
 
-// קומפוננטה זמנית עבור הדוחות (נקים אותה מיד בהמשך)
-const ReportsPage = () => <div>מסך דוחות נוכחות (בקרוב)</div>;
+// אייקונים מתוך Material-UI
+import LoginIcon from '@mui/icons-material/Login';
+import LogoutIcon from '@mui/icons-material/Logout';
+import AssessmentIcon from '@mui/icons-material/Assessment';
 
 const router = createBrowserRouter([
     {
@@ -15,15 +18,10 @@ const router = createBrowserRouter([
         children: [
             { path: "/", element: <EntrancePage /> },
             { path: "/exit", element: <ExitPage /> },
-            { path: "/reports", element: <ReportsPage /> },
+            { path: "/reports", element: <AttendanceReports /> },
         ]
     },
 ]);
-
-// אייקונים מתוך Material-UI
-import LoginIcon from '@mui/icons-material/Login';
-import LogoutIcon from '@mui/icons-material/Logout';
-import AssessmentIcon from '@mui/icons-material/Assessment';
 
 export const navItems = [
     { name: 'רישום כניסה', path: '/', icon: <LoginIcon /> },
