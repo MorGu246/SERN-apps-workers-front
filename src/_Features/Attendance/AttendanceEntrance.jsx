@@ -33,7 +33,8 @@ export default function AttendanceEntrance({ onAction, loading, error, successMe
               setTz(e.target.value.replace(/\D/g, '')); // מאפשר רק ספרות
             }}
             disabled={loading}
-            inputProps={{ maxLength: 9 }}
+            //inputProps={{ maxLength: 9 }}
+            slotProps={{ htmlInput: { maxLength: 9 } }}
             placeholder="הקש 9 ספרות"
             required
           />

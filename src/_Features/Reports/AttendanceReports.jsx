@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Card, CardContent, TextField, Button, Typography, MenuItem, Grid, CircularProgress, Alert } from '@mui/material';
+import { Box, Card, CardContent, TextField, Button, Typography, MenuItem, CircularProgress, Alert } from '@mui/material';
 import AssessmentIcon from '@mui/icons-material/Assessment';
 import { useReports } from './apiHookReports';
 import AttendanceList from './AttendanceList';
@@ -36,20 +36,29 @@ export default function AttendanceReports() {
           </Typography>
 
           <Box component="form" onSubmit={handleSubmit}>
-            <Grid container spacing={3} alignItems="center">
-              <Grid item xs={12} sm={4}>
+            {/* סידור השדות בשורה רספונסיבית באמצעות Flexbox במקום Grid */}
+            <Box 
+              sx={{ 
+                display: 'flex', 
+                flexDirection: { xs: 'column', sm: 'row' }, 
+                gap: 2, 
+                alignItems: 'center',
+                width: '100%'
+              }}
+            >
+              <Box sx={{ flex: { xs: '100%', sm: 4 }, width: '100%' }}>
                 <TextField
                   label="תעודת זהות עובד"
                   variant="outlined"
                   fullWidth
                   value={tz}
                   onChange={(e) => setTz(e.target.value.replace(/\D/g, ''))}
-                  inputProps={{ maxLength: 9 }}
+                  slotProps={{ htmlInput: { maxLength: 9 } }} // תואם ל-React החדש
                   required
                 />
-              </Grid>
+              </Box>
               
-              <Grid item xs={12} sm={3}>
+              <Box sx={{ flex: { xs: '100%', sm: 3 }, width: '100%' }}>
                 <TextField
                   select
                   label="חודש"
@@ -61,9 +70,9 @@ export default function AttendanceReports() {
                     <MenuItem key={m} value={m}>{m}</MenuItem>
                   ))}
                 </TextField>
-              </Grid>
+              </Box>
 
-              <Grid item xs={12} sm={3}>
+              <Box sx={{ flex: { xs: '100%', sm: 3 }, width: '100%' }}>
                 <TextField
                   select
                   label="שנה"
@@ -75,9 +84,9 @@ export default function AttendanceReports() {
                     <MenuItem key={y} value={y}>{y}</MenuItem>
                   ))}
                 </TextField>
-              </Grid>
+              </Box>
 
-              <Grid item xs={12} sm={2}>
+              <Box sx={{ flex: { xs: '100%', sm: 2 }, width: '100%' }}>
                 <Button
                   type="submit"
                   variant="contained"
@@ -90,8 +99,8 @@ export default function AttendanceReports() {
                 >
                   הפקה
                 </Button>
-              </Grid>
-            </Grid>
+              </Box>
+            </Box>
           </Box>
         </CardContent>
       </Card>

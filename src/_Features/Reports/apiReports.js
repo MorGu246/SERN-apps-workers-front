@@ -7,8 +7,8 @@ const API_BASE_URL = "http://localhost:6128/api";
  * @param {string|number} year - שנה נבחרת
  */
 export const fetchReportsFromServer = async (tz, month, year) => {
-    // בניית הכתובת עם הפרמטרים: /api/reports?tz=123&month=6&year=2026
-    const url = `${API_BASE_URL}/reports?tz=${tz}&month=${month}&year=${year}`;
+    // התיקון כאן: שינוי מ- /reports ל- /REP בהתאם לשרת 🎯
+    const url = `${API_BASE_URL}/REP?tz=${tz}&month=${month}&year=${year}`;
     
     const response = await fetch(url, {
         method: 'GET',

@@ -33,7 +33,8 @@ export default function AttendanceExit({ onAction, loading, error, successMessag
               setTz(e.target.value.replace(/\D/g, ''));
             }}
             disabled={loading}
-            inputProps={{ maxLength: 9 }}
+            //inputProps={{ maxLength: 9 }}
+            slotProps={{ htmlInput: { maxLength: 9 } }}
             placeholder="הקש 9 ספרות"
             required
           />
