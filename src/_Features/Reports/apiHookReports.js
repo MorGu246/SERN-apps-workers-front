@@ -48,20 +48,15 @@ export const useReports = () => {
             });
             if (current) grouped.push(current);
 
-            // 3. מיפוי דינמי לרכיב הטבלה
-            setReports(grouped.map(r => {
-                const row = { date: r.dateStr, report_date: r.dateStr, date_str: r.dateStr };
-                
-                const inKeys = ['check_in', 'checkIn', 'checkin', 'entry', 'entry_time', 'entryTime', 'entrance', 'entrance_time', 'entranceTime', 'start', 'start_time', 'startTime', 'from', 'from_time', 'fromTime', 'in', 'time_in', 'timeIn', 'hour_in', 'hourIn'];
-                const outKeys = ['check_out', 'checkOut', 'checkout', 'exit', 'exit_time', 'exitTime', 'end', 'end_time', 'endTime', 'to', 'to_time', 'toTime', 'out', 'time_out', 'timeOut', 'hour_out', 'hourOut'];
-                const hrKeys = ['hours', 'total_hours', 'totalHours', 'work_hours'];
-
-                inKeys.forEach(key => row[key] = r.inStr);
-                outKeys.forEach(key => row[key] = r.outStr);
-                hrKeys.forEach(key => row[key] = r.hrs);
-
-                return row;
-            }));
+            // 3. ✨ מיפוי ישיר ונקי לרכיב הטבלה לפי המפתחות המדויקים שלך
+            setReports(grouped.map(r => ({
+                date: r.dateStr,
+                report_date: r.dateStr,
+                date_str: r.dateStr,
+                entrance_time: r.inStr,
+                exit_time: r.outStr,
+                total_hours: r.hrs
+            })));
 
         } catch (err) {
             setError(err.message || 'נכשלה התקשורת עם השרת בהבאת הדוחות.');
