@@ -6,19 +6,16 @@ export const useAttendance = () => {
     const [error, setError] = useState(null);
     const [successMessage, setSuccessMessage] = useState(null);
 
-    // פונקציה פנימית לאיפוס הודעות ישנות לפני פעולה חדשה
     const resetStates = () => {
         setError(null);
         setSuccessMessage(null);
     };
 
-    // טיפול בדיווח כניסה
     const handleEntrance = async (tz) => {
         resetStates();
         setLoading(true);
         try {
             const data = await postEntrance(tz);
-            // מניחים שהשרת מחזיר אובייקט עם success ו-message
             if (data.success) {
                 setSuccessMessage(data.message); 
                 return true; 
@@ -27,7 +24,6 @@ export const useAttendance = () => {
                 return false;
             }
         } catch (err) {
-            // תפיסת שגיאות שנזרקו מה-fetch
             const errMsg = err.response?.data?.message || 'נכשלה התקשורת עם השרת.';
             setError(errMsg);
             return false;
@@ -36,7 +32,6 @@ export const useAttendance = () => {
         }
     };
 
-    // טיפול בדיווח יציאה
     const handleExit = async (tz) => {
         resetStates();
         setLoading(true);

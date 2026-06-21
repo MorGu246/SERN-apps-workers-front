@@ -18,16 +18,13 @@ export const useReports = () => {
             let current = null;
 
             sorted.forEach(log => {
-                // 1. פירוק ידני של מחרוזת הזמן כדי למנוע "משחקי" אזורי זמן של הדפדפן
                 const [datePart, timePart] = log.log_time.split('T');
                 const [y, m, d] = datePart.split('-');
                 const dateStr = `${+d}.${+m}.${y}`;
 
-                // 2. 🎯 תיקון ידני של 3 שעות קדימה (שעון ירושלים) על הזמן הגולמי
                 let [hours, minutes] = timePart.slice(0, 5).split(':').map(Number);
-                hours = (hours + 3) % 24; // % 24 שומר עלינו במקרה שהשעה עוברת את חצות
+                hours = (hours + 3) % 24;
                 
-                // בנייה מחדש של מחרוזת השעה המעודכנת (למשל "11:30")
                 const timeStr = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
 
                 const logDate = new Date(log.log_time);
@@ -37,7 +34,6 @@ export const useReports = () => {
                     current = { dateObj: logDate, dateStr, inStr: timeStr, outStr: '--:--', hrs: '0' };
                 } else if (log.action_type === 'check_out') {
                     if (current) {
-                        // חישוב הפרש השעות נשאר תקין ומדויק כי שני הזמנים זזים באותו יחס
                         const hrs = ((logDate - current.dateObj) / 3600000).toFixed(2);
                         grouped.push({ ...current, outStr: timeStr, hrs });
                         current = null;
@@ -48,7 +44,6 @@ export const useReports = () => {
             });
             if (current) grouped.push(current);
 
-            // 3. ✨ מיפוי ישיר ונקי לרכיב הטבלה לפי המפתחות המדויקים שלך
             setReports(grouped.map(r => ({
                 date: r.dateStr,
                 report_date: r.dateStr,

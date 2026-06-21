@@ -8,10 +8,9 @@ export default function AttendanceReports() {
   const { reports, loading, error, getReports, clearReports } = useReports();
   
   const [tz, setTz] = useState('');
-  const [month, setMonth] = useState(new Date().getMonth() + 1); // ברירת מחדל: החודש הנוכחי
-  const [year, setYear] = useState(new Date().getFullYear());    // ברירת מחדל: השנה הנוכחית
+  const [month, setMonth] = useState(new Date().getMonth() + 1);
+  const [year, setYear] = useState(new Date().getFullYear());
 
-  // ניקוי הנתונים ביציאה מהמסך
   useEffect(() => {
     return () => clearReports();
   }, []);
@@ -22,9 +21,7 @@ export default function AttendanceReports() {
     getReports(tz, month, year);
   };
 
-  // יצירת רשימת חודשים (1-12)
   const months = Array.from({ length: 12 }, (_, i) => i + 1);
-  // יצירת רשימת שנים (למשל מ-2024 עד 2026)
   const years = [2024, 2025, 2026];
 
   return (
@@ -36,7 +33,6 @@ export default function AttendanceReports() {
           </Typography>
 
           <Box component="form" onSubmit={handleSubmit}>
-            {/* סידור השדות בשורה רספונסיבית באמצעות Flexbox במקום Grid */}
             <Box 
               sx={{ 
                 display: 'flex', 
@@ -105,7 +101,6 @@ export default function AttendanceReports() {
         </CardContent>
       </Card>
 
-      {/* אזור הצגת התוצאות */}
       {loading && (
         <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>
           <CircularProgress />

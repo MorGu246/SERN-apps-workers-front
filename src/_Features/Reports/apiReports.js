@@ -1,13 +1,12 @@
 const API_BASE_URL = "http://localhost:6128/api";
 
 /**
- * שליחת בקשה לקבלת דוחות נוכחות מהשרת
  * @param {string} tz - תעודת זהות של העובד
  * @param {string|number} month - חודש נבחר
  * @param {string|number} year - שנה נבחרת
  */
 export const fetchReportsFromServer = async (tz, month, year) => {
-    // התיקון כאן: שינוי מ- /reports ל- /REP בהתאם לשרת 🎯
+
     const url = `${API_BASE_URL}/REP?tz=${tz}&month=${month}&year=${year}`;
     
     const response = await fetch(url, {

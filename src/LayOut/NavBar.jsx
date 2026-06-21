@@ -11,9 +11,7 @@ export default function NavBar() {
     <Box sx={{ width: menuWidth, bgcolor: 'background.nav', borderLeft: '1px solid #e0e0e0' }}>
       <List disablePadding>
         {navItems.map((item, index) => {
-          // בדיקה האם הנתיב הנוכחי הוא הנתיב של הכפתור
           const isSelected = location.pathname === item.path;
-
           return (
             <ListItem key={index} disablePadding selected={isSelected}>
               <ListItemButton component={NavLink} to={item.path}>

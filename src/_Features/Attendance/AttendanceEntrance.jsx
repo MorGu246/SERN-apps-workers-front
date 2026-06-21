@@ -8,7 +8,7 @@ export default function AttendanceEntrance({ onAction, loading, error, successMe
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!tz.trim()) return;
-    onAction(tz); // מפעיל את ה-Hook
+    onAction(tz);
   };
 
   return (
@@ -29,11 +29,10 @@ export default function AttendanceEntrance({ onAction, loading, error, successMe
             fullWidth
             value={tz}
             onChange={(e) => {
-              resetStates(); // מאפס הודעות קודמות בזמן הקלדה חדשה
-              setTz(e.target.value.replace(/\D/g, '')); // מאפשר רק ספרות
+              resetStates();
+              setTz(e.target.value.replace(/\D/g, ''));
             }}
             disabled={loading}
-            //inputProps={{ maxLength: 9 }}
             slotProps={{ htmlInput: { maxLength: 9 } }}
             placeholder="הקש 9 ספרות"
             required
@@ -42,7 +41,7 @@ export default function AttendanceEntrance({ onAction, loading, error, successMe
           <Button
             type="submit"
             variant="contained"
-            color="primary" // משתמש אוטומטית ב-BtnPrimaryColor מהתמה שלך
+            color="primary"
             fullWidth
             size="large"
             disabled={loading || tz.length < 9}
@@ -52,7 +51,6 @@ export default function AttendanceEntrance({ onAction, loading, error, successMe
             {loading ? 'רושם כניסה...' : 'אישור כניסה'}
           </Button>
 
-          {/* הצגת הודעות מהשרת */}
           {error && <Alert severity="error" sx={{ width: '100%' }}>{error}</Alert>}
           {successMessage && <Alert severity="success" sx={{ width: '100%' }}>{successMessage}</Alert>}
         </Box>

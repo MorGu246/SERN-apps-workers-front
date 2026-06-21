@@ -2,12 +2,10 @@ import React from "react";
 import { createBrowserRouter } from "react-router";
 import AppLayout from "../LayOut/AppLayOut.jsx";
 
-// ייבוא הדפים האמיתיים של האפליקציה
 import EntrancePage from "../_Features/Attendance/EntrancePage.jsx";
 import ExitPage from "../_Features/Attendance/ExitPage.jsx";
 import AttendanceReports from "../_Features/Reports/AttendanceReports.jsx";
 
-// אייקונים מתוך Material-UI
 import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
 import AssessmentIcon from '@mui/icons-material/Assessment';

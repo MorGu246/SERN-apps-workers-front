@@ -33,7 +33,6 @@ export default function AttendanceExit({ onAction, loading, error, successMessag
               setTz(e.target.value.replace(/\D/g, ''));
             }}
             disabled={loading}
-            //inputProps={{ maxLength: 9 }}
             slotProps={{ htmlInput: { maxLength: 9 } }}
             placeholder="הקש 9 ספרות"
             required
@@ -42,7 +41,7 @@ export default function AttendanceExit({ onAction, loading, error, successMessag
           <Button
             type="submit"
             variant="contained"
-            color="error" // משתמש אוטומטית בצבע האדום (BtnRedColor) שהגדרת ב-theme!
+            color="error"
             fullWidth
             size="large"
             disabled={loading || tz.length < 9}
