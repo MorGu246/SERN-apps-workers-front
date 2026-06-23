@@ -1,11 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Outlet } from 'react-router';
 import { Box } from '@mui/material';
 import Header from './Header';
 import NavBar from './NavBar';
 import Footer from './Footer';
+import { PageTitle } from '../vars';
 
 export default function AppLayout() {
+  useEffect(() => {
+    if (PageTitle) {
+      document.title = PageTitle;
+    }
+  }, []);
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', direction: 'rtl' }}>
       <Header />
