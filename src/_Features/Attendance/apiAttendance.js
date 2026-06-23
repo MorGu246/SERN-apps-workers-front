@@ -1,4 +1,5 @@
-const API_BASE_URL = "http://localhost:6128/api";
+//const API_BASE_URL = "http://localhost:6128/api";
+import { API_BASE_URL } from '../../vars';
 
 export const postEntrance = async (tz) => {
     const response = await fetch(`${API_BASE_URL}/ENT`, {
